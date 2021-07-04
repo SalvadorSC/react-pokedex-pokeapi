@@ -9,34 +9,18 @@ import { useState, useEffect } from "react";
 import { PaginaPrincipal } from "./paginas/PaginaPrincipal";
 import { DatosAmigosContext } from "./contexts/DatosAmigosContext";
 function App() {
-  const [amigos, setAmigos] = useState([]);
-  const urlAPI = "http://localhost:3001/amigos";
-  const [nAmigos, setNAmigos] = useState(amigos.length);
+  const [allPokemon, setAllPokemon] = useState([]);
+  const urlAPI = "https://pokeapi.co/api/v2/pokemon";
 
-  const [amigoParaEditar, setAmigoParaEditar] = useState({});
-
-  const llamadaListaAmigos = async (urlAPI) => {
+  const llamadaListaPokemon = async (urlAPI) => {
     const response = await fetch(urlAPI);
-    const amigos = await response.json();
-    setAmigos(amigos);
+    const pokemonsters = await response.json();
+    setAllPokemon(pokemonsters.results);
   };
+
   useEffect(() => {
-    llamadaListaAmigos(urlAPI);
+    llamadaListaPokemon(urlAPI);
   }, []);
-
-  useEffect(() => {
-    setNAmigos(amigos.length);
-  }, [amigos]);
-  const [showFormulario, setShowFormulario] = useState(false);
-
-  const editarAmigo = (id) => {
-    setShowFormulario(true);
-    setAmigoParaEditar(
-      amigos.find((amigo) => {
-        return amigo.id === parseInt(id);
-      })
-    );
-  };
 
   return (
     <>
@@ -45,19 +29,10 @@ function App() {
           <DatosAmigosContext.Provider
             value={{
               urlAPI,
-              amigos,
-              editarAmigo,
-              llamadaListaAmigos,
-              setShowFormulario,
-              showFormulario,
+              allPokemon,
             }}
           >
-            <Cabecera
-              nAmigos={nAmigos}
-              setAmigos={setAmigos}
-              amigoParaEditar={amigoParaEditar}
-              setAmigoParaEditar={setAmigoParaEditar}
-            />
+            <Cabecera />
             <Switch>
               <Route path="/" exact>
                 <Redirect to="/principal" />

@@ -1,34 +1,91 @@
-.actual {
-  font-weight: bold;
+body {
+  font-family: Consolas;
 }
 
-.targeta-amigo {
-  background-color: #483d8b;
+.targeta-pokemon {
+  background-color: #29234e;
   color: white;
   height: 150px;
-  border-radius: 15px;
+  border-radius: 50px;
 }
 
-.boton {
-  background-color: #483d8b;
-  color: white;
+.name-targeta-pokemon,
+.type {
+  font-size: 18px;
 }
 
-.btns-control-amigo {
-  font-size: 1.2em;
-}
-.btns-control-amigo {
-  cursor: pointer;
-}
-
-.campo-form-amigo {
-  border: 1px solid #483d8b;
-}
-
-.mensaje-error {
-  background-color: rgb(255, 240, 240);
-  border: 1px red solid;
+.img-targeta-pokemon {
+  background: #eef0f4;
+  border-radius: 50%;
   padding: 5px;
-  padding-left: 10px;
+  box-shadow: inset 7px 7px 14px #d4d6d9, inset -7px -7px 14px #ffffff;
+}
+
+.type {
+  padding: 5px;
   border-radius: 5px;
+}
+
+.type-grass {
+  background-color: #78c84f;
+}
+.type-water {
+  background-color: #6890f1;
+}
+.type-normal {
+  background-color: #a9a878;
+}
+.type-fire {
+  background-color: #f07f2f;
+}
+.type-bug {
+  background-color: #a8b820;
+}
+.type-poison {
+  background-color: #a040a1;
+}
+.type-flying {
+  background-color: #a890f0;
+}
+.type-fighting {
+  background-color: #c12f28;
+}
+.type-dragon {
+  background-color: #7038f9;
+}
+.type-ice {
+  background-color: #98d8d8;
+}
+.type-ghost {
+  background-color: #705798;
+}
+.type-psychic {
+  background-color: #f85888;
+}
+.type-rock {
+  background-color: #b7a038;
+}
+.type-ground {
+  background-color: #e0c069;
+}
+.type-electric {
+  background-color: #f8d030;
+}
+.type-dark {
+  background-color: #6e5848;
+}
+.type-fairy {
+  background-color: #ee99ac;
+}
+.type-ice {
+  background-color: #98d8d8;
+}
+.type-steel {
+  background-color: #b8b8d0;
+}
+.type-dragon {
+  background-color: #7038f9;
+}
+.type-unknown {
+  background-color: #67a08f;
 }
