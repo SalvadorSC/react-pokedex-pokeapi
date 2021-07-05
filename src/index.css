@@ -9,6 +9,11 @@ body {
   border-radius: 50px;
 }
 
+.btn-purple,
+.btn-purple:hover {
+  background-color: #29234e;
+  color: white;
+}
 .name-targeta-pokemon,
 .type {
   font-size: 18px;

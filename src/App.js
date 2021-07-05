@@ -10,7 +10,7 @@ import { PaginaPrincipal } from "./paginas/PaginaPrincipal";
 import { DatosAmigosContext } from "./contexts/DatosAmigosContext";
 function App() {
   const [allPokemon, setAllPokemon] = useState([]);
-  const urlAPI = "https://pokeapi.co/api/v2/pokemon";
+  const urlAPI = "https://pokeapi.co/api/v2/pokemon?limit=20";
 
   const llamadaListaPokemon = async (urlAPI) => {
     const response = await fetch(urlAPI);

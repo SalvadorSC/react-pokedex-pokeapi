@@ -9,10 +9,11 @@ export const ListaPokemon = (props) => {
 
   useEffect(() => {
     const getPokemonList = () => {
+      setPokemonList([]);
       allPokemon.forEach(async (pokemon) => {
         const response = await fetch(pokemon.url);
         const pokemonResponse = await response.json();
-        console.log(pokemonResponse);
+        /* console.log(pokemonResponse); */
         setPokemonList((oldArray) => [...oldArray, pokemonResponse]);
       });
     };
@@ -21,11 +22,17 @@ export const ListaPokemon = (props) => {
   return (
     <>
       {pokemonList.map((pokemon) => (
-        <li key={pokemon.id} className="col-6 list-unstyled">
+        <li
+          key={pokemon.id}
+          className="col-sm-12 col-md-6 col-xl-4 list-unstyled"
+        >
           <ul className="list-unstyled targeta-pokemon mb-5 p-4 d-flex justify-content-between">
             <div className="d-flex flex-column justify-content-around">
               <li>
-                Name:{" "}
+                N º: <span className="name-targeta-pokemon">{pokemon.id}</span>
+              </li>
+              <li>
+                Name:
                 <span className="name-targeta-pokemon">
                   {" "}
                   {`${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(
@@ -34,7 +41,7 @@ export const ListaPokemon = (props) => {
                 </span>
               </li>
               <li>
-                Type/s:{" "}
+                Type:{" "}
                 {pokemon.types.map((tipo) => (
                   <TiposPokemon tipo={tipo} />
                 ))}
