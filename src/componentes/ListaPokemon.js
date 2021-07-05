@@ -6,7 +6,9 @@ export const ListaPokemon = (props) => {
   const { allPokemon } = props;
   const { fetchGlobal, error } = useFetch();
   const [pokemonList, setPokemonList] = useState([]);
-
+  const organizePokemon = (pokemon, region) => {
+    setPokemonList((oldArray) => [...oldArray, pokemon]);
+  };
   useEffect(() => {
     const getPokemonList = () => {
       setPokemonList([]);
@@ -14,7 +16,8 @@ export const ListaPokemon = (props) => {
         const response = await fetch(pokemon.url);
         const pokemonResponse = await response.json();
         /* console.log(pokemonResponse); */
-        setPokemonList((oldArray) => [...oldArray, pokemonResponse]);
+
+        organizePokemon(pokemonResponse);
       });
     };
     getPokemonList();

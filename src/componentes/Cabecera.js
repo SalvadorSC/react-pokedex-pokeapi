@@ -3,7 +3,8 @@ import { DatosAmigosContext } from "../contexts/DatosAmigosContext";
 import { FormFilter } from "./FormFilter";
 
 export const Cabecera = (props) => {
-  const { nAmigos, setAmigos, amigoParaEditar, setAmigoParaEditar } = props;
+  const { regionSelected, setRegionSelected } = props;
+
   const {
     urlAPI,
     amigos,
@@ -32,7 +33,13 @@ export const Cabecera = (props) => {
             </button>
           )}
         </div>
-        {showFormFilter && <FormFilter setShowFormFilter={setShowFormFilter} />}
+        {showFormFilter && (
+          <FormFilter
+            setShowFormFilter={setShowFormFilter}
+            regionSelected={regionSelected}
+            setRegionSelected={setRegionSelected}
+          />
+        )}
       </header>
     </>
   );

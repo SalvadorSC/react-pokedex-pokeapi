@@ -2,9 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 
 export const FormFilter = (props) => {
-  const { setShowFormFilter } = props;
+  const { setShowFormFilter, regionSelected, setRegionSelected } = props;
   const [nombre, setNombre] = useState();
-  const [regionSelected, setRegionSelected] = useState("");
   const [allRegions, setAllRegions] = useState([]);
   const tratarAmigo = (e) => {
     e.preventDefault();
