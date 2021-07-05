@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DatosAmigosContext } from "../contexts/DatosAmigosContext";
-import { FormularioAmigos } from "./FormularioAmigos";
+import { FormFilter } from "./FormFilter";
 
 export const Cabecera = (props) => {
   const { nAmigos, setAmigos, amigoParaEditar, setAmigoParaEditar } = props;
@@ -12,10 +12,27 @@ export const Cabecera = (props) => {
     setShowFormulario,
     showFormulario,
   } = useContext(DatosAmigosContext);
+  const [showFormFilter, setShowFormFilter] = useState(false);
+
+  const formFilter = <>Hola</>;
+
   return (
     <>
-      <header className="cabecera d-flex justify-content-between align-items-center my-5">
-        <h1>Pokédex</h1>
+      <header className="cabecera my-5">
+        <div className="d-flex justify-content-between align-items-center">
+          <h1>Pokédex</h1>
+          {!showFormFilter && (
+            <button
+              className="btn btn-purple"
+              onClick={() => {
+                setShowFormFilter(true);
+              }}
+            >
+              ···
+            </button>
+          )}
+        </div>
+        {showFormFilter && <FormFilter setShowFormFilter={setShowFormFilter} />}
       </header>
     </>
   );

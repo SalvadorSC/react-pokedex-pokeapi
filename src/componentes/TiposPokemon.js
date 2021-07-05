@@ -6,7 +6,6 @@ export const TiposPokemon = (props) => {
 
   useEffect(() => {
     const determinarTipo = (tipo) => {
-      console.log(tipo);
       if (tipo === "grass") {
       }
       switch (tipo) {
