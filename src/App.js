@@ -12,32 +12,48 @@ function App() {
   const [allPokemon, setAllPokemon] = useState([]);
   const [urlAPI, setUrlAPI] = useState("");
   const [regionSelected, setRegionSelected] = useState("");
+  const [pokemonList, setPokemonList] = useState([]);
 
   const getUrlAPI = (region) => {
+    setAllPokemon([]);
     switch (region) {
       case "1":
-        setUrlAPI("https://pokeapi.co/api/v2/pokemon?limit=151");
+        setUrlAPI("https://pokeapi.co/api/v2/pokemon?limit=10" /* 151 */);
         break;
       case "2":
-        setUrlAPI("https://pokeapi.co/api/v2/pokemon?offset=151&limit=100");
+        setUrlAPI(
+          "https://pokeapi.co/api/v2/pokemon?offset=151&limit=10" /* 100 */
+        );
         break;
       case "3":
-        setUrlAPI("https://pokeapi.co/api/v2/pokemon?offset=251&limit=135");
+        setUrlAPI(
+          "https://pokeapi.co/api/v2/pokemon?offset=251&limit=10" /* 135 */
+        );
         break;
       case "4":
-        setUrlAPI("https://pokeapi.co/api/v2/pokemon?offset=386&limit=107");
+        setUrlAPI(
+          "https://pokeapi.co/api/v2/pokemon?offset=386&limit=10" /* 107 */
+        );
         break;
       case "5":
-        setUrlAPI("https://pokeapi.co/api/v2/pokemon?offset=493&limit=156");
+        setUrlAPI(
+          "https://pokeapi.co/api/v2/pokemon?offset=493&limit=10" /* 156 */
+        );
         break;
       case "6":
-        setUrlAPI("https://pokeapi.co/api/v2/pokemon?offset=649&limit=72");
+        setUrlAPI(
+          "https://pokeapi.co/api/v2/pokemon?offset=649&limit=10" /* 72 */
+        );
         break;
       case "7":
-        setUrlAPI("https://pokeapi.co/api/v2/pokemon?offset=721&limit=88");
+        setUrlAPI(
+          "https://pokeapi.co/api/v2/pokemon?offset=721&limit=10" /* 88 */
+        );
         break;
       case "8":
-        setUrlAPI("https://pokeapi.co/api/v2/pokemon?offset=809&limit=89");
+        setUrlAPI(
+          "https://pokeapi.co/api/v2/pokemon?offset=809&limit=10" /* 89 */
+        );
         break;
       default:
         setUrlAPI("https://pokeapi.co/api/v2/pokemon?limit=10");
@@ -46,13 +62,10 @@ function App() {
 
   useEffect(() => {
     const llamadaListaPokemon = async () => {
-      console.log(typeof regionSelected);
       getUrlAPI(regionSelected);
-      console.log(urlAPI);
-
       const response = await fetch(urlAPI);
-      const pokemonsters = await response.json();
-      setAllPokemon(pokemonsters.results);
+      const data = await response.json();
+      setAllPokemon(data.results);
     };
     llamadaListaPokemon();
   }, [regionSelected, urlAPI]);
@@ -70,13 +83,17 @@ function App() {
             <Cabecera
               regionSelected={regionSelected}
               setRegionSelected={setRegionSelected}
+              setAllPokemon={setAllPokemon}
             />
             <Switch>
               <Route path="/" exact>
                 <Redirect to="/principal" />
               </Route>
               <Route path="/principal" exact>
-                <PaginaPrincipal />
+                <PaginaPrincipal
+                  pokemonList={pokemonList}
+                  setPokemonList={setPokemonList}
+                />
               </Route>
             </Switch>
           </DatosAmigosContext.Provider>
