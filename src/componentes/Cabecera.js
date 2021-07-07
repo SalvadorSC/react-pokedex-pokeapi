@@ -1,21 +1,10 @@
-import { useContext, useState } from "react";
-import { DatosAmigosContext } from "../contexts/DatosAmigosContext";
+import { useState } from "react";
 import { FormFilter } from "./FormFilter";
 
 export const Cabecera = (props) => {
-  const { regionSelected, setRegionSelected } = props;
+  const { regionSelected, setRegionSelected, setAllPokemon } = props;
 
-  const {
-    urlAPI,
-    amigos,
-    editarAmigo,
-    llamadaListaAmigos,
-    setShowFormulario,
-    showFormulario,
-  } = useContext(DatosAmigosContext);
   const [showFormFilter, setShowFormFilter] = useState(false);
-
-  const formFilter = <>Hola</>;
 
   return (
     <>
@@ -38,6 +27,7 @@ export const Cabecera = (props) => {
             setShowFormFilter={setShowFormFilter}
             regionSelected={regionSelected}
             setRegionSelected={setRegionSelected}
+            setAllPokemon={setAllPokemon}
           />
         )}
       </header>

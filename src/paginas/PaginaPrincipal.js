@@ -1,16 +1,19 @@
-import { useFetch } from "../hooks/useFetch";
 import { useContext } from "react";
 import { DatosAmigosContext } from "../contexts/DatosAmigosContext";
 import { ListaPokemon } from "../componentes/ListaPokemon.js";
 
-export const PaginaPrincipal = () => {
-  const { urlAPI, allPokemon } = useContext(DatosAmigosContext);
-  const { fetchGlobal, error } = useFetch();
+export const PaginaPrincipal = (props) => {
+  const { allPokemon } = useContext(DatosAmigosContext);
+  const { pokemonList, setPokemonList } = props;
 
   return (
     <>
       <ul className="pl-0 row">
-        <ListaPokemon allPokemon={allPokemon} />
+        <ListaPokemon
+          allPokemon={allPokemon}
+          pokemonList={pokemonList}
+          setPokemonList={setPokemonList}
+        />
       </ul>
     </>
   );

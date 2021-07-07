@@ -1,9 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useFetch } from "../hooks/useFetch";
 
 export const FormFilter = (props) => {
-  const { setShowFormFilter, regionSelected, setRegionSelected } = props;
+  const {
+    setShowFormFilter,
+    regionSelected,
+    setRegionSelected,
+    setAllPokemon,
+  } = props;
   const [nombre, setNombre] = useState();
+  const [number, setNumber] = useState();
   const [allRegions, setAllRegions] = useState([]);
   const tratarAmigo = (e) => {
     e.preventDefault();
@@ -19,11 +24,18 @@ export const FormFilter = (props) => {
   }, []);
 
   const regionsList = allRegions.map((region) => (
-    <option value={region.url[region.url.length - 2]}>
+    <option
+      key={region.url[region.url.length - 2]}
+      value={region.url[region.url.length - 2]}
+    >
       {region.name.charAt(0).toUpperCase()}
       {region.name.slice(1)}
     </option>
   ));
+
+  const changeRegions = (e) => {
+    setRegionSelected(e.target.value);
+  };
 
   return (
     <>
@@ -40,15 +52,26 @@ export const FormFilter = (props) => {
               onChange={(e) => setNombre(e.target.value)}
             />
           </div>
+          <div className="col-3 ">
+            <label htmlFor="number">Search by number</label>
+            <input
+              type="number"
+              className="form-control campo-form-amigo"
+              id="number"
+              placeholder={"e. 25"}
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+            />
+          </div>
 
-          <div className="col-2">
+          <div className="col-3">
             <label name="valoracion" id="valoracion" htmlFor="valoracion">
               Region
             </label>
             <select
               value={regionSelected}
               onChange={(e) => {
-                setRegionSelected(e.target.value);
+                changeRegions(e);
               }}
               className="custom-select campo-form-amigo"
             >
